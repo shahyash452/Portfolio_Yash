@@ -1,518 +1,859 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Yash Shah</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-  <meta name="image" property="og:image" content="assets/img/Linkedin_bg.png">
+  <meta name="description" content="Yash Shah – Software Engineer, Cloud & ML">
+  <meta property="og:image" content="assets/img/Linkedin_bg.png">
+  <link href="assets/img/Icon-circle.jpg" rel="icon">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <link class="icon-image" href="assets/img/Icon-circle.jpg" rel="icon"> 
+    :root {
+      --black: #0f0f0f;
+      --gray-100: #f7f7f5;
+      --gray-200: #ebebea;
+      --gray-400: #9c9c99;
+      --gray-600: #5c5c5a;
+      --blue: #0057ff;
+      --blue-light: #e8f0ff;
+      --white: #ffffff;
+      --font: 'DM Sans', sans-serif;
+      --mono: 'DM Mono', monospace;
+      --radius: 12px;
+      --nav-h: 64px;
+    }
 
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="assets/vendor/ionicons/css/ionicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+    html { scroll-behavior: smooth; }
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    body {
+      font-family: var(--font);
+      background: var(--white);
+      color: var(--black);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
 
-  <link href="assets/css/style.css" rel="stylesheet">
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gray-200);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--black);
+      text-decoration: none;
+      letter-spacing: -0.3px;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 14px;
+      color: var(--gray-600);
+      text-decoration: none;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--black); }
+    .nav-resume {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--blue) !important;
+      border: 1px solid var(--blue);
+      padding: 6px 14px;
+      border-radius: 6px;
+      transition: all 0.2s !important;
+    }
+    .nav-resume:hover { background: var(--blue); color: var(--white) !important; }
 
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--black); border-radius: 2px; transition: all 0.3s; }
+
+    /* PAGE WRAPPER */
+    main { padding-top: var(--nav-h); }
+    .section { max-width: 1100px; margin: 0 auto; padding: 6rem 2rem; }
+    .section-label {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--blue);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      color: var(--black);
+      margin-bottom: 3rem;
+    }
+    .divider { border: none; border-top: 1px solid var(--gray-200); margin: 0; }
+
+    /* HERO */
+    #hero {
+      min-height: calc(100vh - var(--nav-h));
+      display: flex;
+      align-items: center;
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--blue-light);
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 500;
+      font-family: var(--mono);
+      padding: 6px 12px;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+    }
+    .hero-tag::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--blue);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .hero-name {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 300;
+      letter-spacing: -2px;
+      line-height: 1.05;
+      color: var(--black);
+      margin-bottom: 1rem;
+    }
+    .hero-name strong { font-weight: 500; }
+    .hero-desc {
+      font-size: 18px;
+      color: var(--gray-600);
+      font-weight: 300;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+      max-width: 480px;
+    }
+    .hero-links { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .btn-primary { background: var(--black); color: var(--white); }
+    .btn-primary:hover { background: var(--blue); }
+    .btn-ghost { background: transparent; color: var(--black); border: 1px solid var(--gray-200); }
+    .btn-ghost:hover { border-color: var(--gray-400); background: var(--gray-100); }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--gray-200);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .stat-card {
+      background: var(--white);
+      padding: 2rem;
+    }
+    .stat-card:nth-child(3), .stat-card:nth-child(4) { background: var(--gray-100); }
+    .stat-icon { font-size: 22px; margin-bottom: 0.75rem; }
+    .stat-currently {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--gray-400);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.3rem;
+    }
+    .stat-status {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--black);
+      line-height: 1.3;
+    }
+
+    /* ABOUT */
+    #about { background: var(--gray-100); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .about-img-wrap {
+      position: sticky;
+      top: calc(var(--nav-h) + 2rem);
+    }
+    .about-img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      border-radius: var(--radius);
+      filter: grayscale(15%);
+    }
+    .about-img-placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--gray-200);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 64px;
+      color: var(--gray-400);
+    }
+    .about-body p {
+      font-size: 18px;
+      color: var(--gray-600);
+      font-weight: 300;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+    .about-body p strong { color: var(--black); font-weight: 500; }
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 2rem;
+    }
+    .skill-tag {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      color: var(--gray-600);
+      font-size: 12px;
+      font-family: var(--mono);
+      padding: 5px 10px;
+      border-radius: 6px;
+    }
+
+    /* EXPERIENCE */
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 3rem;
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .timeline-item:last-child { border-bottom: none; }
+    .timeline-meta { padding-top: 2px; }
+    .timeline-date {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--gray-400);
+      margin-bottom: 0.5rem;
+    }
+    .timeline-company {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--black);
+    }
+    .timeline-loc {
+      font-size: 12px;
+      color: var(--gray-400);
+      margin-top: 2px;
+    }
+    .timeline-role {
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--black);
+      margin-bottom: 1rem;
+      letter-spacing: -0.3px;
+    }
+    .timeline-badge {
+      display: inline-block;
+      background: var(--blue-light);
+      color: var(--blue);
+      font-size: 11px;
+      font-family: var(--mono);
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+    }
+    .timeline-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .timeline-bullets li {
+      font-size: 15px;
+      color: var(--gray-600);
+      padding-left: 1.25rem;
+      position: relative;
+      line-height: 1.6;
+    }
+    .timeline-bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gray-400);
+      font-size: 12px;
+      top: 4px;
+    }
+
+    /* EDUCATION */
+    #education { background: var(--gray-100); }
+    .edu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .edu-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 2rem;
+    }
+    .edu-year {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--gray-400);
+      margin-bottom: 0.75rem;
+    }
+    .edu-degree {
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--black);
+      margin-bottom: 0.25rem;
+      line-height: 1.4;
+    }
+    .edu-school {
+      font-size: 14px;
+      color: var(--gray-400);
+      margin-bottom: 1rem;
+    }
+    .edu-gpa {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #f0faf5;
+      color: #0a6640;
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+    .edu-gpa::before { content: '★'; font-size: 10px; }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: border-color 0.2s, transform 0.2s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .project-card:hover {
+      border-color: var(--gray-400);
+      transform: translateY(-2px);
+    }
+    .project-icon {
+      width: 40px; height: 40px;
+      background: var(--gray-100);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      margin-bottom: 1.25rem;
+    }
+    .project-tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--gray-400);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .project-title {
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--black);
+      margin-bottom: 0.75rem;
+      line-height: 1.35;
+    }
+    .project-desc {
+      font-size: 14px;
+      color: var(--gray-600);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+    .project-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .stack-tag {
+      font-size: 11px;
+      font-family: var(--mono);
+      color: var(--gray-400);
+      background: var(--gray-100);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+    .project-card.featured {
+      background: var(--black);
+      border-color: var(--black);
+    }
+    .project-card.featured .project-icon { background: rgba(255,255,255,0.1); }
+    .project-card.featured .project-tag { color: rgba(255,255,255,0.4); }
+    .project-card.featured .project-title { color: var(--white); }
+    .project-card.featured .project-desc { color: rgba(255,255,255,0.6); }
+    .project-card.featured .stack-tag { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); }
+    .project-card.featured:hover { border-color: var(--black); }
+
+    /* CONTACT */
+    #contact { background: var(--black); color: var(--white); }
+    #contact .section-label { color: rgba(255,255,255,0.4); }
+    #contact .section-title { color: var(--white); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .contact-desc {
+      font-size: 18px;
+      color: rgba(255,255,255,0.6);
+      font-weight: 300;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+    .contact-links { display: flex; flex-direction: column; gap: 12px; }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+    .contact-link:hover {
+      background: rgba(255,255,255,0.1);
+      color: var(--white);
+      border-color: rgba(255,255,255,0.25);
+    }
+    .contact-link-icon {
+      width: 32px; height: 32px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    .contact-info { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-info-item { display: flex; flex-direction: column; gap: 4px; }
+    .contact-info-label { font-size: 11px; color: rgba(255,255,255,0.3); font-family: var(--mono); letter-spacing: 0.08em; text-transform: uppercase; }
+    .contact-info-value { font-size: 15px; color: rgba(255,255,255,0.8); }
+
+    footer {
+      background: var(--black);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 2rem;
+      text-align: center;
+    }
+    footer p { font-size: 12px; color: rgba(255,255,255,0.3); font-family: var(--mono); }
+
+    /* MOBILE NAV */
+    @media (max-width: 768px) {
+      .nav-links { display: none; position: absolute; top: var(--nav-h); left: 0; right: 0; background: var(--white); border-bottom: 1px solid var(--gray-200); flex-direction: column; gap: 0; padding: 1rem 2rem; }
+      .nav-links.open { display: flex; }
+      .nav-links li { padding: 0.5rem 0; border-bottom: 1px solid var(--gray-200); }
+      .nav-links li:last-child { border: none; }
+      .hamburger { display: flex; }
+
+      .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .hero-stats { grid-template-columns: 1fr 1fr; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .about-img-wrap { position: static; }
+
+      .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .timeline-meta { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+
+      .edu-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+      .section { padding: 4rem 1.5rem; }
+      .section-title { font-size: 2rem; }
+    }
+  </style>
 </head>
+<body>
 
-<body id="page-top">
-
-  <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" id="mainNav">
-    <div class="container">
-      <!-- <a class="navbar-brand js-scroll" href="">Portfolio</a> -->
-      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-logo" href="#hero">yash.shah</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
       </button>
-      <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link js-scroll" href="#about">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll" href="#education">Education</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll" href="#work">Experience</a>
-          </li>
-            <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#work">Work Experience
-              <a class="dropdown-item" href="#collaborations">Collaborations</a>
-              <a class="dropdown-item" href="#tradeshows">Trade Shows</a>
-              <a class="dropdown-item" href="#interviews">Interviews</a>
-              <a class="dropdown-item" href="#mentorship">Mentorship</a>
-            </div> -->
-          <li class="nav-item">
-            <a class="nav-link js-scroll" href="#projects">Projects</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll" href="assets/img/Yash Shah_onCampusResume.pdf" target="_blank">Resume</a>
-          </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link js-scroll" href="#certifications">Certifications</a>
-          </li> -->
-          <li class="nav-item">
-            <a class="nav-link js-scroll" href="#contact">Contact</a>
-          </li>
-        </ul>
-      </div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="assets/img/Yash_Shah_Resume.pdf" target="_blank" class="nav-resume">Resume ↗</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </div>
   </nav>
 
-  <div id="home" class="intro route bg-image" style="background-image: url(assets/img/bg2.jpg)">
-    <div class="overlay-itro"></div>
-    <div class="intro-content display-table">
-      <div class="table-cell">
-        <div class="container">
-          <h1 class="intro-title mb-4">Yash Shah</h1>
-          <p class="intro-subtitle"><span class="text-slider-items">Data Analyst, Machine Learning</span><strong class="text-slider"></strong></p>
+  <main>
+
+    <!-- HERO -->
+    <section id="hero">
+      <div class="hero-inner">
+        <div>
+          <div class="hero-tag">Available for opportunities</div>
+          <h1 class="hero-name"><strong>Yash</strong><br>Shah</h1>
+          <p class="hero-desc">Software Engineer building distributed systems, cloud infrastructure, and ML pipelines at scale.</p>
+          <div class="hero-links">
+            <a href="#projects" class="btn btn-primary">View work</a>
+            <a href="#contact" class="btn btn-ghost">Get in touch</a>
+            <a href="https://yashshah.vercel.app/" target="_blank" class="btn btn-ghost">Portfolio ↗</a>
+          </div>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-card">
+            <div class="stat-icon">🎓</div>
+            <div class="stat-currently">Currently</div>
+            <div class="stat-status">Pursuing M.S. @ ASU</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🏢</div>
+            <div class="stat-currently">Previously</div>
+            <div class="stat-status">SDE Intern @ Amazon</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📍</div>
+            <div class="stat-currently">Based in</div>
+            <div class="stat-status">Seattle, WA</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📄</div>
+            <div class="stat-currently">Published in</div>
+            <div class="stat-status">IEEE Xplore · 2023</div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+    </section>
 
-  <main id="main">
+    <hr class="divider">
 
-    <section id="about" class="about-mf sect-pt4 route">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="box-shadow-full" style="border-radius: 1rem;">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="row">
-                    <div class="col-sm-3 "></div>
-                    <div class="col-sm-4 col-md-5">
-                      <div class="about-img">
-                        <img src="assets/img/Portfolio_Picture_Yash.jpg" class="img-fluid rounded b-shadow-a" alt="">
-                      </div>
-                    </div>
-                    <div class="col-sm-3 "></div>
-                  </div>
-                  <div class="skill-mf">
-                    <p class="title-s">Skills</p>
-                    <ul>
-                    <li> <b> Programming Languages: </b> C, C++, Python, SQL</li>
-                    <li> <b> Web: </b> HTML, CSS3, JavaScript, Bootstrap, Node.js, Express.js </li>
-                    <li> <b>Analytics and ML: </b> NumPy, Pandas, TensorFlow, Scikit-learn</li>
-                    </ul>
-                    <div class="progress">
-                      </div>
-                      <p class="title-s">Tools</p>
-                      <ul>
-                      <li> <b> Database Tools:  </b> MySQL, MongoDB</li>
-                      <li> <b> Visualization Tools: </b> PowerBI, Tableau Python Libraries</li>
-                      </ul>
-                    <div class="progress">
-                       </div>
-                       <p class="title-s">Software</p>
-                       <span> Jupyter, Android Studio, VS Code, Microsoft Office</span> <span class="pull-right"></span>
-                       <div class="progress">
-                         </div>
-                         <p class="title-s">Domains</p>
-                       <span>Data Analytics, Data Science </span> <span class="pull-right"></span>
-                       <div class="progress">
-                         </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="about-me pt-4 pt-md-0">
-                    
-                    <div class="title-box-2">
-                      <h5 class="title-left">
-                        About me
-                      </h5>
-                    </div>
-                    
-                    <p class="lead">
-                      Hello!
-                      I'm Yash Shah, a Computer Science Engineer with a Bachelor's degree in Computer Science and Engineering from Charotar University of Science and Technology.
-                    </p>
-                    <p class="lead">
-                      I have a passion for exploring the vast world of data. Through my studies and personal projects, I've developed a keen interest in leveraging data to uncover valuable insights and drive informed decision-making.
-                    </p>
-                    <p class="lead">
-                      My passion for coding started in my initial years of college when I participated in various Hackathons. I possess a keen interest in the realm of business and data analytics, having diligently followed the stock market for the past three years. My passion lies in deciphering valuable business insights from raw data, and I am committed to exploring the intricate details that data analytics has to offer in the pursuit of informed decision-making and strategic planning within the business domain.
-                       
-                    </p>
-                  </div>
-                </div>
-              </div>
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section">
+        <p class="section-label">About</p>
+        <div class="about-grid">
+          <div class="about-img-wrap">
+            <img src="assets/img/Portfolio_Yash.png" alt="Yash Shah" class="about-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="about-img-placeholder" style="display:none;">👤</div>
+          </div>
+          <div class="about-body">
+            <p>I'm a <strong>Software Engineer</strong> pursuing my Master's in Computer Software Engineering at Arizona State University, where I hold a perfect 4.0 GPA.</p>
+            <p>This past summer, I interned at <strong>Amazon</strong> in Seattle, working deep inside <strong>AWS Lambda's</strong> core infrastructure — engineering improvements to the Proactive Spin Up system and reducing fleet load spikes by 60%.</p>
+            <p>My work lives at the intersection of <strong>distributed systems, cloud infrastructure, and machine learning</strong>. I think in terms of latency, throughput, and fault tolerance. I've published in <strong>IEEE Xplore</strong> and shipped production code serving millions of Lambda invocations daily.</p>
+            <p>Outside of engineering, I follow the stock market closely and enjoy translating raw data into decision-useful insights.</p>
+            <div class="skills-list">
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">TypeScript</span>
+              <span class="skill-tag">Go</span>
+              <span class="skill-tag">Rust</span>
+              <span class="skill-tag">Java</span>
+              <span class="skill-tag">React.js</span>
+              <span class="skill-tag">Node.js</span>
+              <span class="skill-tag">FastAPI</span>
+              <span class="skill-tag">AWS Lambda</span>
+              <span class="skill-tag">SageMaker</span>
+              <span class="skill-tag">Docker</span>
+              <span class="skill-tag">Kubernetes</span>
+              <span class="skill-tag">PostgreSQL</span>
+              <span class="skill-tag">DynamoDB</span>
+              <span class="skill-tag">Redis</span>
+              <span class="skill-tag">Kafka</span>
+              <span class="skill-tag">TensorFlow</span>
+              <span class="skill-tag">PyTorch</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="education" class="portfolio-mf sect-pt4 route">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="title-box text-center">
-              <h3 class="title-a">
-                Education
-              </h3>
-              <div class="line-mf"></div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4 offset-md-1">
-            <div class="work-box">
-              <div class="work-img">
-                <img src="assets/img/Education/asu.jpg" alt="" class="img-fluid">
-              </div>
-              <div class="work-content">
-                <div class="row">
-                  <div class="col-sm-12">
-                    <h2 class="w-title">Master of Computer Software Engineering</h2>
-                    <div class="w-more">
-                      <span class="w-date mt-md-4 mt-lg-5">2024 - 2026</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 offset-md-1">
-            <div class="work-box">
-              <div class="work-img">
-                <img src="assets/img/Education/charusat.png" alt="" class="img-fluid">
-              </div>
-              <div class="work-content">
-                <div class="row">
-                  <div class="col-sm-12">
-                    <h2 class="w-title">Bachelors of Computer Science and Engineering</h2>
-                    <div class="w-more">
-                      <span class="w-date">2020 - 2024</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    
+    <hr class="divider">
 
-    <section id="work" class="portfolio-mf sect-pt4 route">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="title-box text-center">
-              <h3 class="title-a">
-                Work Experience
-              </h3>
-              <div class="line-mf"></div>
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="section">
+        <p class="section-label">Experience</p>
+        <h2 class="section-title">Where I've worked</h2>
+        <div class="timeline">
+
+          <div class="timeline-item">
+            <div class="timeline-meta">
+              <div class="timeline-date">May – Aug 2025</div>
+              <div class="timeline-company">Amazon</div>
+              <div class="timeline-loc">Seattle, WA</div>
             </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            <div class="work-box">
-              <div class="work-content">
-                <div class="row">
-                  <div class="col-sm-12">
-                    <h2 class="w-title">Web Application Developer Intern</h2>
-                    <p class="w-details">SilverTouch Technologies Ltd - Ahmedabad </p>
-                    <div class="w-more">
-                      <span class="w-date">May 2022 - June 2022</span>
-                      <br>
-                      <br>
-                      <b> <span class="res"> Responsibilities: </span> </b>
-                        <li>We were assigned a frontend project which was dedicated for a pharmaceutical company. </li>
-                        <li>The industry exposure during the 2 months tenure was immense as we got hands on experience of dealing with
-                          real-world problems. </li>
-                        <li>The experience of dealing with Javascript and other frontend languages helped us to get the cogent view of
-                          developing a web application. </li>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="col-md-4">
-            <div class="work-box">
-              <div class="work-content">
-                <div class="row">
-                  <div class="col-sm-12">
-                    <h2 class="w-title">Data Science and Machine Learning Intern</h2>
-                    <p class="w-details">BrainyBeams Technologies Ltd - Ahmedabad </p> 
-                    <div class="w-more">
-                      <span class="w-date">May 2023 - June 2023</span>
-                      <br>
-                      <br>
-                      <b> <span class="res"> Responsibilities: </span> </b>
-                        <li>A training was being provided by the industry executives about approaching and solving the problems 
-                          encountered in real-world. </li>
-                        <li>A project was assigned on performing the car-price prediction using machine learning algorithms. </li>
-                        <li> The required tools and technologies in the domain of Data Science such as Pandas, Numpy libraries and Machine Learning models.  </li>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div>
+              <div class="timeline-badge">SDE Intern · AWS Lambda</div>
+              <h3 class="timeline-role">Software Development Engineer Intern</h3>
+              <ul class="timeline-bullets">
+                <li>Engineered improvements to AWS Lambda's Proactive Spin Up (PSU) system, reducing Top-of-the-Hour fleet load spikes by 60% and strengthening large-scale reliability.</li>
+                <li>Built observability pipelines and CloudWatch dashboards to monitor fleet health across distributed serverless infrastructure.</li>
+                <li>Engineered data transformation and model pipelines to optimize flow between system inputs and outputs, improving accuracy and maintainability.</li>
+                <li>Debugged production issues in distributed Lambda infrastructure, contributing to on-call readiness and improving reliability across endpoints.</li>
+              </ul>
             </div>
           </div>
 
-          <div class="col-md-4">
-            <div class="work-box">
-              <div class="work-content">
-                <div class="row">
-                  <div class="col-sm-12">
-                    <h2 class="w-title">Data Science Intern</h2>
-                    <p class="w-details">Kintu Designs - Surat </p> 
-                    <div class="w-more">
-                      <span class="w-date">January 2024 - April 2024 </span>
-                      <br>
-                      <br>
-                      <b> <span class="res"> Responsibilities: </span> </b>
-                        <li>Designed an intuitive interface for students to easily provide feedback on their educational experiences, including both structured forms and open-ended responses. </li>
-                        <li>Implemented Natural Language Processing (NLP) techniques to analyze the feedback, using sentiment analysis to extract meaningful insights and identify key themes. </li>
-                        <li>Created a secure dashboard for administrators to visualize the analyzed data, offering tools to filter and sort feedback</li>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <div class="timeline-item">
+            <div class="timeline-meta">
+              <div class="timeline-date">Jan – Apr 2024</div>
+              <div class="timeline-company">Kintu Designs</div>
+              <div class="timeline-loc">India</div>
+            </div>
+            <div>
+              <div class="timeline-badge">Data Science &amp; ML Intern</div>
+              <h3 class="timeline-role">Data Science & Machine Learning Intern</h3>
+              <ul class="timeline-bullets">
+                <li>Built a student feedback analysis platform processing 10K+ submissions, reducing manual review time by 40%.</li>
+                <li>Designed and trained Logistic Regression and Decision Tree classifiers with NLP preprocessing, achieving 85%+ sentiment classification accuracy.</li>
+                <li>Surfaced top recurring themes per course cohort, enabling curriculum gap identification within hours instead of weeks.</li>
+              </ul>
             </div>
           </div>
-          <div class="col-md-2">
+
+          <div class="timeline-item">
+            <div class="timeline-meta">
+              <div class="timeline-date">Jun – Sep 2023</div>
+              <div class="timeline-company">Brainy Beams</div>
+              <div class="timeline-loc">India</div>
+            </div>
+            <div>
+              <div class="timeline-badge">Data Science Intern</div>
+              <h3 class="timeline-role">Data Science Intern</h3>
+              <ul class="timeline-bullets">
+                <li>Built an end-to-end diamond price prediction pipeline from EDA through ensemble model training, achieving R² = 0.92 on held-out test data.</li>
+                <li>Designed normalized relational schemas in MySQL/PostgreSQL and optimized queries, cutting execution time by 30% and enabling 3× faster ML data ingestion.</li>
+              </ul>
+            </div>
           </div>
-          
+
         </div>
       </div>
     </section>
 
+    <hr class="divider">
 
-    <section id="projects" class="blog-mf sect-pt4 route">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="title-box text-center">
-              <h3 class="title-a">
-                Projects and Publication
-              </h3>
-              <div class="line-mf"></div>
+    <!-- EDUCATION -->
+    <section id="education">
+      <div class="section">
+        <p class="section-label">Education</p>
+        <h2 class="section-title">Academic background</h2>
+        <div class="edu-grid">
+          <div class="edu-card">
+            <div class="edu-year">2024 – 2026</div>
+            <div class="edu-degree">Master of Computer Software Engineering</div>
+            <div class="edu-school">Arizona State University · Seattle, WA</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <span class="edu-gpa">4.0 / 4.0 GPA</span>
+              <span style="font-size:12px;color:var(--gray-400);padding:4px 0;align-self:center;">Minor: Data Science</span>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="card card-blog">
-              <div class="card-img">
-                <a href="https://ieeexplore.ieee.org/abstract/document/10331722" target="_blank"><img src="assets/img/Projects/ucf.png" alt="" class="img-fluid" style="border-radius: 1rem;"></a>
-              </div>
-              <div class="card-body">
-                <div class="card-category-box">
-                  <div class="card-category">
-                    <h6 class="category">Research Paper on Unveiling anomalies in surveillance videos through various Transfer Learning Models </h6>
-                  </div>
-                </div>
-                <h3 class="card-title"><a href="https://scholarshelf.vercel.app/"></a></h3>
-                <p class="card-description">
-                  <li>The paper aimed at conducting a thorough examination of deep learning models like <b>Densenet121, VGG16,
-                    VGG19, and Resnet50 </b> in the context of anomaly detection in videos. The objective was to unravel insights into
-                    the capabilities of these models.</li>
-                  <li>The study uses subsets of various classes of UCF crime datasets.</li>
-                </p>
-              </div>
-            </div>
+          <div class="edu-card">
+            <div class="edu-year">2020 – 2024</div>
+            <div class="edu-degree">B.Tech Computer Science & Engineering</div>
+            <div class="edu-school">Charotar University of Science and Technology · India</div>
+            <span class="edu-gpa">9.54 / 10 GPA</span>
           </div>
-          <div class="col-md-6">
-            <div class="card card-blog">
-              <div class="card-img">
-                <a href="https://scholarshelf.vercel.app/" target="_blank"><img src="assets/img/Projects/scholar_shelf.png" alt="" class="img-fluid" style="border-radius: 1rem;"></a>
-              </div>
-              <div class="card-body">
-                <div class="card-category-box">
-                  <div class="card-category">
-                    <h6 class="category">Scholar Shelf: A resource management application</h6>
-                  </div>
-                </div>
-                <h3 class="card-title"><a href="https://scholarshelf.vercel.app/"></a></h3>
-                <p class="card-description">
-                  <li>ScholarShelf is a platform exclusively designed for Charusat Students developed using <b> ReactJS, ExpressJS, NodeJS, MongoDB </b> </li>
-                  <li>ScholarShelf is developed for the sole purpose of being an effective way to communicate and meet the requirements of students who are willing to enhance their learning. </li> 
-                  <li>It currently has more than <b>2K visitors</b> and <b>7k page views</b>. </li>
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="card card-blog">
-              <div class="card-img">
-                <a href="https://github.com/shahyash452/Comprehensive-Analysis-of-Hospitality-Trends/tree/main" target="_blank"><img src="assets/img/Projects/hotel.png" alt="" class="img-fluid" style="border-radius: 1rem;"></a>
-              </div>
-              <div class="card-body">
-                <div class="card-category-box">
-                  <div class="card-category">
-                    <h6 class="category">Comprehensive Analysis of Hospitality Trends</h6>
-                  </div>
-                </div>
-                <p class="card-description">
-                  <li>This project empowers stakeholders to make informed business decisions by leveraging the capabilities of
-                    Microsoft PowerBI. </li>
-                  <li>It provides valuable insights into crucial parameters like Revenue, Occupancy, Average Daily Rate, and more. </li>
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="card card-blog">
-              <div class="card-img">
-                <a href="https://github.com/shahyash452/Amazon-Sales-Data-Analytics" target="_blank"><img src="assets/img/Projects/amazon.png" alt="" class="img-fluid" style="border-radius: 1rem;"></a>
-              </div>
-              <div class="card-body">
-                <div class="card-category-box">
-                  <div class="card-category">
-                    <h6 class="category">Amazon Sales Data Analytics</h6>
-                  </div>
-                </div>
-                <p class="card-description">
-                  <li> Leveraging Power BI to seamlessly integrate and visualize your Amazon sales data, providing real-time, comprehensive insights into key performance indicators, customer behavior, and market trends. </li>
-                  <li> The dynamic dashboards in PowerBI enables quick identification of opportunities. </li>
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="card card-blog">
-              <div class="card-img">
-                <a href="https://github.com/shahyash452/IPL-2023-Analysis" target="_blank"><img src="assets/img/Projects/ipl.png" alt="" class="img-fluid" style="border-radius: 1rem;"></a>
-              </div>
-              <div class="card-body">
-                <div class="card-category-box">
-                  <div class="card-category">
-                    <h6 class="category">IPL - 2023 Analytics</h6>
-                  </div>
-                </div>
-                <p class="card-description">
-                  <li> A comprehensive and unique data visualization project on Indian Premier League-2023 in PowerBI. </li>
-                  <li> The dynamic dashboard prepared shows the best case scenarios for selecing the best XI of the season. </li>
-                  <li> The concepts used in python are data cleaning and libraries of Python </li>
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="card card-blog">
-              <div class="card-img">
-                <a href="https://github.com/shahyash452/Learning-Data-science-/blob/master/Statistics/Exploratory%20Data%20Analysis/Netflix%20EDA.ipynb" target="_blank"><img src="assets/img/Projects/netflix.jpg" alt="" class="img-fluid" style="border-radius: 1rem;"></a>
-              </div>
-              <div class="card-body">
-                <div class="card-category-box">
-                  <div class="card-category">
-                    <h6 class="category">Streaming Insights: Unraveling Netflix with EDA</h6>
-                  </div>
-                </div>
-                <p class="card-description">
-                  <li>This project includes data cleaning to a large extent of more than 8000 rows. </li>
-                  <li>The project addresses key inquiries such as the peak release year of TV shows & Movies on Netflix, details about the various shows and a visual showcase of the top 10 directors who have made significant contributions to the platform. </li>
-                </p>
-              </div>
-            </div>
-          </div>
-          
         </div>
       </div>
     </section>
 
-    <!-- <section id="certifications" class="services-mf pt-5 route">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="title-box text-center">
-              <h3 class="title-a">
-                Certifications
-              </h3>
-              <div class="line-mf"></div>
+    <hr class="divider">
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section">
+        <p class="section-label">Projects & Publications</p>
+        <h2 class="section-title">Selected work</h2>
+        <div class="projects-grid">
+
+          <a href="https://ieeexplore.ieee.org/abstract/document/10331722" target="_blank" class="project-card featured">
+            <div class="project-icon">📄</div>
+            <div class="project-tag">IEEE Xplore · 2023</div>
+            <div class="project-title">Anomaly Detection in Surveillance Videos via Transfer Learning</div>
+            <div class="project-desc">Evaluated DenseNet121, VGG16, VGG19, and ResNet50 for video anomaly detection on the UCF Crime dataset. DenseNet121 achieved ROC-AUC of 0.85.</div>
+            <div class="project-stack">
+              <span class="stack-tag">TensorFlow</span>
+              <span class="stack-tag">PyTorch</span>
+              <span class="stack-tag">Keras</span>
+              <span class="stack-tag">Transfer Learning</span>
             </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            <div class="service-box">
-              <div class="work-img">
-                <a href="https://www.udemy.com/certificate/UC-f0bd5ef7-5a1d-4f14-ab05-3a0282f0efd6/"><img src="assets/img/Certi/udemy.jpg" alt="" class="img-fluid"></a>
-              </div>
-              <div class="work-content">
-                <h2 class="w-title">Learn Machine Learning and AI</h2>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="service-box">
-              <div class="work-img">
-                <a href="https://www.udemy.com/certificate/UC-dcc95875-8976-414a-b262-d7c05c70c986/"><img src="assets/img/Certi/udemy.jpg" alt="" class="img-fluid"></a>
-              </div>
-              <div class="work-content">
-                <h2 class="w-title">Python for Machine Learning</h2>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="service-box">
-              <div class="work-img">
-                <a href="hhttps://www.udemy.com/certificate/UC-ba8cbc0b-c710-47d6-a927-7b96cca274dc/"><img src="assets/img/Certi/udemy.jpg" alt="" class="img-fluid"></a>
-              </div>
-              <div class="work-content">
-                <h2 class="w-title">Data Manipulation in Python
-                </h2>
-              </div>
+          </a>
+
+          <div class="project-card">
+            <div class="project-icon">🔋</div>
+            <div class="project-tag">ASU Affiliated Project</div>
+            <div class="project-title">ESP32-Based Battery Management System</div>
+            <div class="project-desc">High-throughput BLE telemetry system processing 10K+ battery readings/day with an offline-first ingestion pipeline and secure OTA firmware delivery.</div>
+            <div class="project-stack">
+              <span class="stack-tag">ESP32</span>
+              <span class="stack-tag">BLE</span>
+              <span class="stack-tag">SQLite</span>
+              <span class="stack-tag">SHA-256</span>
             </div>
           </div>
 
+          <a href="https://scholarshelf.vercel.app/" target="_blank" class="project-card">
+            <div class="project-icon">📚</div>
+            <div class="project-tag">Web App · 2K+ users</div>
+            <div class="project-title">ScholarShelf — Resource Management Platform</div>
+            <div class="project-desc">A full-stack platform for Charusat students to discover and share learning resources. Over 2K visitors and 7K page views.</div>
+            <div class="project-stack">
+              <span class="stack-tag">React.js</span>
+              <span class="stack-tag">Node.js</span>
+              <span class="stack-tag">Express.js</span>
+              <span class="stack-tag">MongoDB</span>
+            </div>
+          </a>
+
+          <a href="https://github.com/shahyash452/Comprehensive-Analysis-of-Hospitality-Trends/tree/main" target="_blank" class="project-card">
+            <div class="project-icon">🏨</div>
+            <div class="project-tag">Data Analytics</div>
+            <div class="project-title">Comprehensive Analysis of Hospitality Trends</div>
+            <div class="project-desc">PowerBI dashboard delivering insights on Revenue, Occupancy, and ADR to empower data-driven business decisions in hospitality.</div>
+            <div class="project-stack">
+              <span class="stack-tag">Power BI</span>
+              <span class="stack-tag">Python</span>
+              <span class="stack-tag">Pandas</span>
+            </div>
+          </a>
+
+          <a href="https://github.com/shahyash452/Amazon-Sales-Data-Analytics" target="_blank" class="project-card">
+            <div class="project-icon">📊</div>
+            <div class="project-tag">Data Analytics</div>
+            <div class="project-title">Amazon Sales Data Analytics</div>
+            <div class="project-desc">Real-time Power BI dashboards providing insights into Amazon sales KPIs, customer behavior, and market trends to identify opportunities quickly.</div>
+            <div class="project-stack">
+              <span class="stack-tag">Power BI</span>
+              <span class="stack-tag">DAX</span>
+              <span class="stack-tag">Python</span>
+            </div>
+          </a>
+
+          <a href="https://github.com/shahyash452/IPL-2023-Analysis" target="_blank" class="project-card">
+            <div class="project-icon">🏏</div>
+            <div class="project-tag">Data Visualization</div>
+            <div class="project-title">IPL 2023 Analytics Dashboard</div>
+            <div class="project-desc">Comprehensive data visualization of IPL 2023, featuring dynamic best-XI selection scenarios using cleaned Python data and Power BI dashboards.</div>
+            <div class="project-stack">
+              <span class="stack-tag">Power BI</span>
+              <span class="stack-tag">Python</span>
+              <span class="stack-tag">Data Cleaning</span>
+            </div>
+          </a>
 
         </div>
       </div>
-    </section> -->
+    </section>
 
-    <section class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(assets/img/overlay-bg1.jpg)">
-      <div class="overlay-mf"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="contact-mf">
-              <div id="contact" class="box-shadow-full" style="border-radius: 1rem;">
-                <div class="row">
-              
-                  </div>
-                  <div class="col-md-6">
-                    <div class="title-box-2 pt-4 pt-md-0">
-                      <h5 class="title-left">
-                        Contact
-                      </h5>
-                    </div>
-                    <div class="more-info">
-                      <ul class="list-ico">
-                        <li><span class="ion-email"></span> shahyash452@gmail.com</li>
-                      </ul>
-                    </div>
-                    <div class="socials">
-                      <ul>
-                        <li><a href="https://www.linkedin.com/in/yash-shah-295952219/" target="_blank" ><span class="ico-circle"><i class="ion-social-linkedin"></i></span></a></li>
-                        <li><a href="https://twitter.com/YshShah1" target="_blank" ><span class="ico-circle"><i class="ion-social-twitter"></i></span></a></li>
-                        <li><a href="https://github.com/shahyash452" target="_blank" ><span class="ico-circle"><i class="ion-social-github"></i></span></a></li>
-                        <li><a href="https://leetcode.com/alligator20022022/" target="_blank" ><span class="ico-circle"><i class="fa-solid fa-code"></i></span></a></li>
-                        <li><a href="https://www.hackerrank.com/profile/shahyash452" target="_blank" ><span class="ico-circle"><i class="fa-brands fa-hackerrank"></i></span></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section">
+        <p class="section-label">Contact</p>
+        <h2 class="section-title">Let's work together</h2>
+        <div class="contact-grid">
+          <div>
+            <p class="contact-desc">I'm open to full-time software engineering roles, research collaborations, and interesting side projects. Drop me a message.</p>
+            <div class="contact-links">
+              <a href="mailto:shahyash452@gmail.com" class="contact-link">
+                <div class="contact-link-icon">✉</div>
+                <span>shahyash452@gmail.com</span>
+              </a>
+              <a href="https://linkedin.com/in/shahyash452" target="_blank" class="contact-link">
+                <div class="contact-link-icon">in</div>
+                <span>linkedin.com/in/shahyash452</span>
+              </a>
+              <a href="https://github.com/shahyash452" target="_blank" class="contact-link">
+                <div class="contact-link-icon" style="font-family:var(--mono);font-size:12px;">gh</div>
+                <span>github.com/shahyash452</span>
+              </a>
+              <a href="https://leetcode.com/alligator20022022/" target="_blank" class="contact-link">
+                <div class="contact-link-icon" style="font-family:var(--mono);font-size:11px;">lc</div>
+                <span>LeetCode</span>
+              </a>
+            </div>
+          </div>
+          <div class="contact-info">
+            <div class="contact-info-item">
+              <span class="contact-info-label">Location</span>
+              <span class="contact-info-value">Seattle, WA</span>
+            </div>
+            <div class="contact-info-item">
+              <span class="contact-info-label">Phone</span>
+              <span class="contact-info-value">(602) 328-6795</span>
+            </div>
+            <div class="contact-info-item">
+              <span class="contact-info-label">Status</span>
+              <span class="contact-info-value" style="color:#4ade80;">Available for opportunities</span>
+            </div>
+            <div class="contact-info-item">
+              <span class="contact-info-label">Medium</span>
+              <a href="https://medium.com/@shahyash452" target="_blank" style="color:rgba(255,255,255,0.6);font-size:15px;text-decoration:none;">@shahyash452 ↗</a>
             </div>
           </div>
         </div>
@@ -521,22 +862,21 @@
 
   </main>
 
-  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-  <div id="preloader"></div>
+  <footer>
+    <p>Designed & built by Yash Shah · 2025</p>
+  </footer>
 
-  <script src="assets/vendor/jquery/jquery.min.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
-  <script src="assets/vendor/counterup/jquery.counterup.min.js"></script>
-  <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-  <script src="assets/vendor/typed.js/typed.min.js"></script>
-  <script src="assets/vendor/venobox/venobox.min.js"></script>
-  <script src="https://kit.fontawesome.com/577eb74294.js" crossorigin="anonymous"></script>
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
 
-  <script src="assets/js/main.js"></script>
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      nav.style.boxShadow = window.scrollY > 10 ? '0 1px 20px rgba(0,0,0,0.06)' : 'none';
+    });
+  </script>
 
 </body>
-
 </html>
